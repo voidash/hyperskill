@@ -9,11 +9,14 @@ public class Main {
 
     public static void main(String[] args){
 
-        if (args.length < 2){
+        if (args.length < 1){
             System.out.println("Usage: java fileName");
+            System.out.println(args.length);
+
+            return;
         }
         try{
-            content = Files.readAllBytes(Paths.get(args[0])).toString();
+            content = Files.readString(Paths.get(args[0]));
 
         }catch (IOException e) {
             e.printStackTrace();
@@ -21,9 +24,23 @@ public class Main {
             return;
         }
         int chars = getTotalCharacters(content);
-        int words = getTotalWords(content);
+        int words = getTotalWord(content);
         int sentences = getTotalSentence(content);
         int[] syllables = getSyllables(content);
+
+        System.out.println("the Text is: \n" + content);
+
+        System.out.println("Words: "+ words);
+        System.out.println("Sentences: "+ sentences);
+        System.out.println("Characters: "+ chars);
+        System.out.println("Syllables: "+ syllables[0]);
+        System.out.println("Polysyllables: " + syllables[1]);
+
+
+
+
+
+
 
 
     }
